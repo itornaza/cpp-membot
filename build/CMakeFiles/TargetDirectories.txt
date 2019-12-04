@@ -1,0 +1,3 @@
+/Users/ion-/Projects/C++/cpp-memory-management-chatbot/build/CMakeFiles/rebuild_cache.dir
+/Users/ion-/Projects/C++/cpp-memory-management-chatbot/build/CMakeFiles/edit_cache.dir
+/Users/ion-/Projects/C++/cpp-memory-management-chatbot/build/CMakeFiles/membot.dir
