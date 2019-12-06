@@ -15,7 +15,8 @@
         "echo": true,
         "reveal": "always",
         "panel": "shared"
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "make",
@@ -28,7 +29,8 @@
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "membot",
@@ -37,7 +39,8 @@
         "echo": true,
         "reveal": "always",
         "panel": "shared"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }
