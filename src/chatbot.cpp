@@ -28,12 +28,12 @@ ChatBot::ChatBot(std::string filename) {
   _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+// 1. Destructor
 ChatBot::~ChatBot() {
   std::cout << "ChatBot Destructor" << std::endl;
 
   // deallocate heap memory
-  if (_image != NULL) // Attention: wxWidgets used NULL and not nullptr
-  {
+  if (_image != NULL) { // Attention: wxWidgets used NULL and not nullptr
     delete _image;
     _image = NULL;
   }
@@ -41,6 +41,70 @@ ChatBot::~ChatBot() {
 
 //// STUDENT CODE
 ////
+
+// 2. Copy constructor
+  ChatBot::ChatBot(const ChatBot& src) {
+    std::cout << "ChatBot copy constructor" << std::endl;
+    
+    // Data handles (owned) 
+    _image = new wxBitmap();
+    *_image = *src._image;
+
+    // Data handles (not owned)
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+  }
+
+  // 3. Move constructor
+  ChatBot::ChatBot(ChatBot&& src) {
+    std::cout << "ChatBot move constructor" << std::endl;
+
+    // Data handles (owned) 
+    _image = new wxBitmap();
+    *_image = *src._image;
+
+    // Data handles (not owned)
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+
+    // Detach src handles
+    src._image = nullptr;
+    src._chatLogic = nullptr;
+    src._rootNode = nullptr;
+  }
+
+  // 4. Copy assignment operator
+  ChatBot& ChatBot::operator=(const ChatBot& src) {
+    if(this != &src) {
+      // Data handles (owned) 
+      _image = new wxBitmap();
+      *_image = *src._image;
+
+      // Data handles (not owned)
+      _chatLogic = src._chatLogic;
+      _rootNode = src._rootNode;
+    }
+    return *this;
+  }
+
+  // 5. Move assignment operator
+  ChatBot& ChatBot::operator=(ChatBot&& src) {
+    if(this != &src) {
+      // Data handles (owned) 
+      _image = new wxBitmap();
+      *_image = *src._image;
+
+      // Data handles (not owned)
+      _chatLogic = src._chatLogic;
+      _rootNode = src._rootNode;
+
+      // Detach src handles
+      src._image = nullptr;
+      src._chatLogic = nullptr;
+      src._rootNode = nullptr;
+    }
+    return *this;
+  }
 
 ////
 //// EOF STUDENT CODE
