@@ -7,7 +7,8 @@ GraphNode::~GraphNode() {
   //// STUDENT CODE
   ////
 
-  delete _chatBot;
+  // Task 0: _chatbot already deleted from ~Chatlogic()
+  // delete _chatBot;
 
   ////
   //// EOF STUDENT CODE
