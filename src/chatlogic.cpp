@@ -176,8 +176,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
               AddAllTokensToElement("KEYWORD", tokens, *edge);
 
               // store reference in child node and parent node
-              childNode->get()->AddEdgeToParentNode(edge);
-              parentNode->get()->AddEdgeToChildNode(edge);
+              (*childNode)->AddEdgeToParentNode(edge);
+              (*parentNode)->AddEdgeToChildNode(edge);
             }
 
             ////
