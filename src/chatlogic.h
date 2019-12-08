@@ -2,6 +2,7 @@
 #define CHATLOGIC_H_
 
 #include "chatgui.h"
+#include <memory>
 #include <string>
 #include <vector>
 
