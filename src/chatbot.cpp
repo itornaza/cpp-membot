@@ -63,7 +63,7 @@ ChatBot::~ChatBot() {
 
     // Data handles (owned)
     if (_image != nullptr) {
-      _image = src._image;
+      _image = src._image;  
     } else { 
       delete _image; // Leaks avoidance
       _image = new wxBitmap();
