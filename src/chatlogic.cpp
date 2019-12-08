@@ -15,11 +15,7 @@ ChatLogic::ChatLogic() {
   //// STUDENT CODE
   ////
 
-  // create instance of chatbot
-  _chatBot = new ChatBot("../images/chatbot.png");
-
-  // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-  _chatBot->SetChatLogicHandle(this);
+  // Intentionally left blank
 
   ////
   //// EOF STUDENT CODE
@@ -29,13 +25,7 @@ ChatLogic::~ChatLogic() {
   //// STUDENT CODE
   ////
 
-  // delete chatbot instance
-  delete _chatBot;
-
-  // delete all edges
-  for (auto it = std::begin(_edges); it != std::end(_edges); ++it) {
-    delete *it;
-  }
+  // Intentionally left blank
 
   ////
   //// EOF STUDENT CODE
@@ -166,18 +156,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
                     return node->GetID() == std::stoi(childToken->second);
                   });
 
-              // create new edge
-              GraphEdge *edge = new GraphEdge(id);
+              auto edge = std::make_unique<GraphEdge>(id);
               edge->SetChildNode(childNode->get());
               edge->SetParentNode(parentNode->get());
-              _edges.push_back(edge);
 
               // find all keywords for current node
               AddAllTokensToElement("KEYWORD", tokens, *edge);
 
               // store reference in child node and parent node
-              (*childNode)->AddEdgeToParentNode(edge);
-              (*parentNode)->AddEdgeToChildNode(edge);
+              (*childNode)->AddEdgeToParentNode(edge.get());      // not owned
+              (*parentNode)->AddEdgeToChildNode(std::move(edge)); // owned
             }
 
             ////
@@ -214,9 +202,13 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
     }
   }
 
+  // create a local `ChatBot` instance on the stack 
+  ChatBot chatBot("../images/chatbot.png");
+  chatBot.SetChatLogicHandle(this);
+
   // add chatbot to graph root node
-  _chatBot->SetRootNode(rootNode);
-  rootNode->MoveChatbotHere(_chatBot);
+  chatBot.SetRootNode(rootNode);
+  rootNode->MoveChatbotHere(std::move(chatBot));
 
   ////
   //// EOF STUDENT CODE

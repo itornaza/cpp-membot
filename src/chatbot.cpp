@@ -51,55 +51,77 @@ ChatBot::~ChatBot() {
     *_image = *src._image;
 
     // Data handles (not owned)
-    _chatLogic = src._chatLogic;
+    _currentNode = src._currentNode;
     _rootNode = src._rootNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
   }
 
   // 3. Move constructor
   ChatBot::ChatBot(ChatBot&& src) {
     std::cout << "ChatBot move constructor" << std::endl;
 
-    // Data handles (owned) 
-    _image = new wxBitmap();
-    *_image = *src._image;
+    // Data handles (owned)
+    if (_image != nullptr) {
+      _image = src._image;
+    } else { 
+      delete _image; // Leaks avoidance
+      _image = new wxBitmap();
+      *_image = *src._image;
+    }
 
     // Data handles (not owned)
-    _chatLogic = src._chatLogic;
+    _currentNode = src._currentNode;
     _rootNode = src._rootNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     // Detach src handles
     src._image = nullptr;
+    src._currentNode = nullptr;
     src._chatLogic = nullptr;
     src._rootNode = nullptr;
   }
 
   // 4. Copy assignment operator
   ChatBot& ChatBot::operator=(const ChatBot& src) {
+    std::cout << "ChatBot assignment operator" << std::endl;
     if(this != &src) {
       // Data handles (owned) 
       _image = new wxBitmap();
       *_image = *src._image;
 
       // Data handles (not owned)
-      _chatLogic = src._chatLogic;
+      _currentNode = src._currentNode;
       _rootNode = src._rootNode;
+      _chatLogic = src._chatLogic;
+      _chatLogic->SetChatbotHandle(this);
     }
     return *this;
   }
 
   // 5. Move assignment operator
   ChatBot& ChatBot::operator=(ChatBot&& src) {
+    std::cout << "ChatBot move assignment operator" << std::endl;
     if(this != &src) {
-      // Data handles (owned) 
-      _image = new wxBitmap();
-      *_image = *src._image;
+      // Data handles (owned)
+      if (_image != nullptr) {
+        _image = src._image;
+      } else { 
+        delete _image; // Leaks avoidance
+        _image = new wxBitmap();
+        *_image = *src._image;
+      }
 
       // Data handles (not owned)
-      _chatLogic = src._chatLogic;
+      _currentNode = src._currentNode;
       _rootNode = src._rootNode;
+      _chatLogic = src._chatLogic;
+      _chatLogic->SetChatbotHandle(this);
 
       // Detach src handles
       src._image = nullptr;
+      src._currentNode = nullptr;
       src._chatLogic = nullptr;
       src._rootNode = nullptr;
     }
