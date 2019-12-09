@@ -78,7 +78,7 @@ ChatBot::~ChatBot() {
     _chatLogic = src._chatLogic;
     _chatLogic->SetChatbotHandle(this);
 
-    // Detach src handles
+    // Invalidate src handles
     src._image = NULL;
     src._currentNode = nullptr;
     src._rootNode = nullptr;
@@ -121,7 +121,7 @@ ChatBot::~ChatBot() {
       _chatLogic = src._chatLogic;
       _chatLogic->SetChatbotHandle(this);
 
-      // Detach src handles
+      // Invalidate src handles
       src._image = NULL;
       src._currentNode = nullptr;
       src._rootNode = nullptr;
@@ -188,10 +188,8 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2) {
   const size_t m(s1.size());
   const size_t n(s2.size());
 
-  if (m == 0)
-    return n;
-  if (n == 0)
-    return m;
+  if (m == 0) { return n; }
+  if (n == 0) { return m; }
 
   size_t *costs = new size_t[n + 1];
 
