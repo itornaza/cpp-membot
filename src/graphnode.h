@@ -1,10 +1,11 @@
 #ifndef GRAPHNODE_H_
 #define GRAPHNODE_H_
 
-#include "chatbot.h"
 #include <memory>
 #include <string>
 #include <vector>
+
+#include "chatbot.h"
 
 // forward declarations
 class GraphEdge;

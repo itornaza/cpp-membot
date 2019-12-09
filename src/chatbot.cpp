@@ -11,21 +11,23 @@
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot() {
   // invalidate data handles
-  _image = nullptr;
-  _chatLogic = nullptr;
+  _image = NULL;
+  _currentNode = nullptr;
   _rootNode = nullptr;
+  _chatLogic = nullptr;
 }
 
 // constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename) {
   std::cout << "ChatBot Constructor" << std::endl;
 
-  // invalidate data handles
-  _chatLogic = nullptr;
-  _rootNode = nullptr;
-
   // load image into heap memory
   _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
+
+  // invalidate data handles
+  _currentNode = nullptr;
+  _rootNode = nullptr;
+  _chatLogic = nullptr;
 }
 
 // 1. Destructor
@@ -77,10 +79,10 @@ ChatBot::~ChatBot() {
     _chatLogic->SetChatbotHandle(this);
 
     // Detach src handles
-    src._image = nullptr;
+    src._image = NULL;
     src._currentNode = nullptr;
-    src._chatLogic = nullptr;
     src._rootNode = nullptr;
+    src._chatLogic = nullptr;
   }
 
   // 4. Copy assignment operator
@@ -120,10 +122,10 @@ ChatBot::~ChatBot() {
       _chatLogic->SetChatbotHandle(this);
 
       // Detach src handles
-      src._image = nullptr;
+      src._image = NULL;
       src._currentNode = nullptr;
-      src._chatLogic = nullptr;
       src._rootNode = nullptr;
+      src._chatLogic = nullptr;
     }
     return *this;
   }
