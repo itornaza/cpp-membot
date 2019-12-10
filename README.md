@@ -1,6 +1,6 @@
 # Memory Management Chatbot
 
-Implemented a more efficient memory management model using smart pointers to the existing repository [starter code](https://github.com/udacity/CppND-System-Monitor)
+Implemented a more efficient memory management model using smart pointers to the existing repository [starter code](https://github.com/udacity/CppND-System-Monitor), according to the [rubric](https://review.udacity.com/#!/rubrics/2687/view).
 
 <img src="images/membot_running.png"/>
 
