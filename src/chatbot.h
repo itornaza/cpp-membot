@@ -35,9 +35,6 @@ public:
   // 1. Destructor
   ~ChatBot();         
 
-  //// STUDENT CODE
-  ////           
-
   // 2. Copy constructor
   ChatBot(const ChatBot&);
 
@@ -49,9 +46,6 @@ public:
 
   // 5. Move assignment operator
   ChatBot& operator=(ChatBot&&);
-
-  ////
-  //// EOF STUDENT CODE
 
   // getters / setters
   void SetCurrentNode(GraphNode *node);

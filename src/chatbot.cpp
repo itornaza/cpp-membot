@@ -41,9 +41,6 @@ ChatBot::~ChatBot() {
   }
 }
 
-//// STUDENT CODE
-////
-
 // 2. Copy constructor
   ChatBot::ChatBot(const ChatBot& src) {
     std::cout << "ChatBot copy constructor" << std::endl;
@@ -129,9 +126,6 @@ ChatBot::~ChatBot() {
     }
     return *this;
   }
-
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message) {
   // loop over all edges and keywords and compute Levenshtein distance to query
