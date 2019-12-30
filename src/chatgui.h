@@ -12,7 +12,7 @@ private:
   // control elements
   wxBoxSizer *_dialogSizer;
   wxBitmap _image;
-  
+
   std::unique_ptr<ChatLogic> _chatLogic;
 
 public:

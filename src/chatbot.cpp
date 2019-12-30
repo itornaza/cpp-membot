@@ -30,7 +30,7 @@ ChatBot::ChatBot(std::string filename) {
   _chatLogic = nullptr;
 }
 
-// 1. Destructor
+// 1. destructor
 ChatBot::~ChatBot() {
   std::cout << "ChatBot Destructor" << std::endl;
 
@@ -41,11 +41,52 @@ ChatBot::~ChatBot() {
   }
 }
 
-// 2. Copy constructor
-  ChatBot::ChatBot(const ChatBot& src) {
-    std::cout << "ChatBot copy constructor" << std::endl;
-    
-    // Data handles (owned) 
+// 2. copy constructor
+ChatBot::ChatBot(const ChatBot &src) {
+  std::cout << "ChatBot copy constructor" << std::endl;
+
+  // Data handles (owned)
+  _image = new wxBitmap();
+  *_image = *src._image;
+
+  // Data handles (not owned)
+  _currentNode = src._currentNode;
+  _rootNode = src._rootNode;
+  _chatLogic = src._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
+}
+
+// 3. move constructor
+ChatBot::ChatBot(ChatBot &&src) {
+  std::cout << "ChatBot move constructor" << std::endl;
+
+  // data handles (owned)
+  if (_image != nullptr) {
+    _image = src._image;
+  } else {
+    delete _image; // leaks avoidance
+    _image = new wxBitmap();
+    *_image = *src._image;
+  }
+
+  // data handles (not owned)
+  _currentNode = src._currentNode;
+  _rootNode = src._rootNode;
+  _chatLogic = src._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
+
+  // invalidate src handles
+  src._image = NULL;
+  src._currentNode = nullptr;
+  src._rootNode = nullptr;
+  src._chatLogic = nullptr;
+}
+
+// 4. copy assignment operator
+ChatBot &ChatBot::operator=(const ChatBot &src) {
+  std::cout << "ChatBot assignment operator" << std::endl;
+  if (this != &src) {
+    // Data handles (owned)
     _image = new wxBitmap();
     *_image = *src._image;
 
@@ -55,77 +96,36 @@ ChatBot::~ChatBot() {
     _chatLogic = src._chatLogic;
     _chatLogic->SetChatbotHandle(this);
   }
+  return *this;
+}
 
-  // 3. Move constructor
-  ChatBot::ChatBot(ChatBot&& src) {
-    std::cout << "ChatBot move constructor" << std::endl;
-
+// 5. move assignment operator
+ChatBot &ChatBot::operator=(ChatBot &&src) {
+  std::cout << "ChatBot move assignment operator" << std::endl;
+  if (this != &src) {
     // Data handles (owned)
     if (_image != nullptr) {
-      _image = src._image;  
-    } else { 
+      _image = src._image;
+    } else {
       delete _image; // Leaks avoidance
       _image = new wxBitmap();
       *_image = *src._image;
     }
 
-    // Data handles (not owned)
+    // data handles (not owned)
     _currentNode = src._currentNode;
     _rootNode = src._rootNode;
     _chatLogic = src._chatLogic;
     _chatLogic->SetChatbotHandle(this);
 
-    // Invalidate src handles
+    // invalidate src handles
     src._image = NULL;
     src._currentNode = nullptr;
     src._rootNode = nullptr;
     src._chatLogic = nullptr;
   }
-
-  // 4. Copy assignment operator
-  ChatBot& ChatBot::operator=(const ChatBot& src) {
-    std::cout << "ChatBot assignment operator" << std::endl;
-    if(this != &src) {
-      // Data handles (owned) 
-      _image = new wxBitmap();
-      *_image = *src._image;
-
-      // Data handles (not owned)
-      _currentNode = src._currentNode;
-      _rootNode = src._rootNode;
-      _chatLogic = src._chatLogic;
-      _chatLogic->SetChatbotHandle(this);
-    }
-    return *this;
-  }
-
-  // 5. Move assignment operator
-  ChatBot& ChatBot::operator=(ChatBot&& src) {
-    std::cout << "ChatBot move assignment operator" << std::endl;
-    if(this != &src) {
-      // Data handles (owned)
-      if (_image != nullptr) {
-        _image = src._image;
-      } else { 
-        delete _image; // Leaks avoidance
-        _image = new wxBitmap();
-        *_image = *src._image;
-      }
-
-      // Data handles (not owned)
-      _currentNode = src._currentNode;
-      _rootNode = src._rootNode;
-      _chatLogic = src._chatLogic;
-      _chatLogic->SetChatbotHandle(this);
-
-      // Invalidate src handles
-      src._image = NULL;
-      src._currentNode = nullptr;
-      src._rootNode = nullptr;
-      src._chatLogic = nullptr;
-    }
-    return *this;
-  }
+  return *this;
+}
 
 void ChatBot::ReceiveMessageFromUser(std::string message) {
   // loop over all edges and keywords and compute Levenshtein distance to query
@@ -182,8 +182,12 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2) {
   const size_t m(s1.size());
   const size_t n(s2.size());
 
-  if (m == 0) { return n; }
-  if (n == 0) { return m; }
+  if (m == 0) {
+    return n;
+  }
+  if (n == 0) {
+    return m;
+  }
 
   size_t *costs = new size_t[n + 1];
 

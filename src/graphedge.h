@@ -14,8 +14,9 @@ private:
 
   // proprietary members
   int _id;
-  std::vector<std::string>
-      _keywords; // list of topics associated with this edge
+
+  // list of associated topics with this edge
+  std::vector<std::string> _keywords;
 
 public:
   // constructor / desctructor

@@ -4,8 +4,8 @@
 #include <wx/filename.h>
 #include <wx/image.h>
 
-#include "chatgui.h"
 #include "chatbot.h"
+#include "chatgui.h"
 #include "chatlogic.h"
 
 // size of chatbot window

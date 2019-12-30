@@ -97,9 +97,11 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
           if (type->second == "NODE") {
 
             // check if node with this ID exists already
-            auto newNode = std::find_if(
-                _nodes.begin(), _nodes.end(),
-                [&id](std::unique_ptr<GraphNode> &node) { return node->GetID() == id; });
+            auto newNode =
+                std::find_if(_nodes.begin(), _nodes.end(),
+                             [&id](std::unique_ptr<GraphNode> &node) {
+                               return node->GetID() == id;
+                             });
 
             // create new element if ID does not yet exist
             if (newNode == _nodes.end()) {
@@ -134,7 +136,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
                     return node->GetID() == std::stoi(parentToken->second);
                   });
               auto childNode = std::find_if(
-                  _nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> &node) {
+                  _nodes.begin(), _nodes.end(),
+                  [&childToken](std::unique_ptr<GraphNode> &node) {
                     return node->GetID() == std::stoi(childToken->second);
                   });
 
@@ -178,7 +181,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
     }
   }
 
-  // create a local `ChatBot` instance on the stack 
+  // create a local `ChatBot` instance on the stack
   ChatBot chatBot("../images/chatbot.png");
   chatBot.SetChatLogicHandle(this);
 
