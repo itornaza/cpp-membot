@@ -13,13 +13,9 @@ class GraphEdge;
 class GraphNode {
 private:
   // data handles (owned)
-
-  // edges to subsequent nodes
   std::vector<std::unique_ptr<GraphEdge>> _childEdges; 
 
   // data handles (not owned)
-  
-  // edges to preceding nodes
   std::vector<GraphEdge *> _parentEdges; 
   ChatBot _chatBot;
 

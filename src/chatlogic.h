@@ -1,16 +1,24 @@
 #ifndef CHATLOGIC_H_
 #define CHATLOGIC_H_
 
-#include "chatgui.h"
 #include <memory>
 #include <string>
 #include <vector>
+
+#include "chatgui.h"
 
 // forward declarations
 class ChatBot;
 class GraphEdge;
 class GraphNode;
 
+/**
+ * ChatLogic class
+ * 
+ * Manages the dialogs that appear within the ChatBotPanelDialog that
+ * is used in the chatgui module. It is implementing the messaging system
+ * between the user and the chatbot.
+ */
 class ChatLogic {
 private:
   // data handles (owned)

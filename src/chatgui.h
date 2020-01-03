@@ -4,7 +4,8 @@
 #include <memory>
 #include <wx/wx.h>
 
-class ChatLogic; // forward declaration
+// forward declaration
+class ChatLogic;
 
 // middle part of the window containing the dialog between user and chatbot
 class ChatBotPanelDialog : public wxScrolledWindow {

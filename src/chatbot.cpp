@@ -30,6 +30,10 @@ ChatBot::ChatBot(std::string filename) {
   _chatLogic = nullptr;
 }
 
+//---------------------------
+// Rule of 5 implementation
+//---------------------------
+
 // 1. destructor
 ChatBot::~ChatBot() {
   std::cout << "ChatBot Destructor" << std::endl;

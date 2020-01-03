@@ -4,8 +4,9 @@
 #include <string>
 #include <wx/bitmap.h>
 
-class GraphNode; // forward declaration
-class ChatLogic; // forward declaration
+// forward declarations
+class GraphNode;
+class ChatLogic; 
 
 /**
  * ChatBot class
@@ -31,6 +32,10 @@ public:
   // constructors / destructors
   ChatBot();                     // constructor WITHOUT memory allocation
   ChatBot(std::string filename); // constructor WITH memory allocation
+
+  //------------------------
+  // Rule of 5 requirement
+  //------------------------
 
   // 1. destructor
   ~ChatBot();
