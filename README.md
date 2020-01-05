@@ -8,20 +8,6 @@ This project implements a more efficient memory management model using smart poi
   <img src="images/membot_running.png" width="400"/>
 </p>
 
-## Code schematics
-
-<p align="center">
-  <img src="images/schematic_1.png" width="600"/>
-</p>
-
-<p align="center">
-  <img src="images/schematic_2.png" width="1000"/>
-</p>
-
-<img align="left " src="images/chatbot_1.png" width="400"/>
-<img align="right" src="images/chatbot_2.png" width="400"/>
-
-
 ## Dependencies for Running Locally
 * cmake >= 3.11
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
@@ -44,3 +30,21 @@ This project implements a more efficient memory management model using smart poi
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./membot`.
+
+## Code schematics
+
+### Gui setup
+<p align="center">
+  <img src="images/schematic_1.png" width="600"/>
+</p>
+
+### Class structure
+<p align="center">
+  <img src="images/schematic_2.png" width="1000"/>
+</p>
+
+### Chatbot motion
+<div>
+  <img align="left" src="images/chatbot_1.png" width="400"/>
+  <img align="right" src="images/chatbot_2.png" width="400"/>
+</div>
