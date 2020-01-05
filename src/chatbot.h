@@ -33,9 +33,7 @@ public:
   ChatBot(); // constructor WITHOUT memory allocation
   ChatBot(std::string filename); // constructor WITH memory allocation
 
-  //------------------------
-  // Rule of 5 requirement
-  //------------------------
+  // Rule of 5
 
   // 1. destructor
   ~ChatBot();

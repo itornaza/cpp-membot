@@ -39,7 +39,7 @@ ChatBot::~ChatBot() {
   std::cout << "ChatBot Destructor" << std::endl;
 
   // deallocate heap memory
-  if (_image != NULL) { // Attention: wxWidgets used NULL and not nullptr
+  if (_image != NULL) { // Attention: wxWidgets still use NULL and not nullptr
     delete _image;
     _image = NULL;
   }
@@ -195,12 +195,13 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2) {
 
   size_t *costs = new size_t[n + 1];
 
-  for (size_t k = 0; k <= n; k++)
+  for (size_t k = 0; k <= n; k++) {
     costs[k] = k;
+  }
 
   size_t i = 0;
-  for (std::string::const_iterator it1 = s1.begin(); it1 != s1.end();
-       ++it1, ++i) {
+  for (std::string::const_iterator it1 = s1.begin(); it1 != s1.end(); 
+        ++it1, ++i) {
     costs[0] = i + 1;
     size_t corner = i;
 
@@ -216,8 +217,8 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2) {
       }
 
       corner = upper;
-    }
-  }
+    } // end inner for
+  } // end outer for
 
   int result = costs[n];
   delete[] costs;
