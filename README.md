@@ -2,7 +2,7 @@
 
 The ChatBot code creates a dialogue where users can ask questions about some aspects of memory management in C++. After the knowledge base of the chatbot has been loaded from a text file, a knowledge graph representation is created in computer memory, where chatbot answers represent the graph nodes and user queries represent the graph edges. After a user query has been sent to the chatbot, the Levenshtein distance is used to identify the most probable answer.
 
-This project implements a more efficient memory management model using smart pointers and move semantics based on this [starter code](https://github.com/udacity/CppND-Memory-Management-Chatbot), and in accordance with this [rubric](https://review.udacity.com/#!/rubrics/2687/view).
+This project implements a more efficient memory management model using smart pointers, move semantics and exclusive ownership of objects based on this [starter code](https://github.com/udacity/CppND-Memory-Management-Chatbot), and in accordance with this [rubric](https://review.udacity.com/#!/rubrics/2687/view).
 
 <p align="center">
   <img src="images/membot_running.png" width="400"/>

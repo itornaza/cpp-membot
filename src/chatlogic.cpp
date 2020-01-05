@@ -27,10 +27,10 @@ void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens,
   auto token = tokens.begin();
   while (true) {
     token = std::find_if(
-        token, tokens.end(),
-        [&tokenID](const std::pair<std::string, std::string> &pair) {
-          return pair.first == tokenID;
-        });
+      token, tokens.end(),
+      [&tokenID](const std::pair<std::string, std::string> &pair) {
+        return pair.first == tokenID;
+      });
     if (token != tokens.end()) {
       element.AddToken(token->second); // add new keyword to edge
       token++;                         // increment iterator to next element
@@ -55,8 +55,9 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
         // extract next token
         int posTokenFront = lineStr.find("<");
         int posTokenBack = lineStr.find(">");
-        if (posTokenFront < 0 || posTokenBack < 0)
+        if (posTokenFront < 0 || posTokenBack < 0) {
           break; // quit loop if no complete token has been found
+        }
         std::string tokenStr =
             lineStr.substr(posTokenFront + 1, posTokenBack - 1);
 
