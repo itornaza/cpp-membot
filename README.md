@@ -18,6 +18,10 @@ This project implements a more efficient memory management model using smart poi
   <img src="images/schematic_2.png" width="1000"/>
 </p>
 
+<img align="left " src="images/chatbot_1.png" width="400"/>
+<img align="right" src="images/chatbot_2.png" width="400"/>
+
+
 ## Dependencies for Running Locally
 * cmake >= 3.11
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
