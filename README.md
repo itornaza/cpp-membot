@@ -4,13 +4,19 @@ The ChatBot code creates a dialogue where users can ask questions about some asp
 
 This project implements a more efficient memory management model using smart pointers and move semantics based on this [starter code](https://github.com/udacity/CppND-Memory-Management-Chatbot), and in accordance with this [rubric](https://review.udacity.com/#!/rubrics/2687/view).
 
-<img src="images/membot_running.png" width="400"/>
+<p align="center">
+  <img src="images/membot_running.png" width="400"/>
+</p>
 
 ## Code schematics
 
-<img src="images/schematic_1.png" width="600"/>
+<p align="center">
+  <img src="images/schematic_1.png" width="600"/>
+</p>
 
-<img src="images/schematic_2.png" width="1000"/>
+<p align="center">
+  <img src="images/schematic_2.png" width="1000"/>
+</p>
 
 ## Dependencies for Running Locally
 * cmake >= 3.11
