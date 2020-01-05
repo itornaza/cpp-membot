@@ -44,6 +44,9 @@ This project implements a more efficient memory management model using smart poi
 </p>
 
 ### Chatbot motion
+
+The chatbot is moving from node to node depending on user questions and keywords that are sotred within the graph edges.
+
 <div>
   <img align="left" src="images/chatbot_1.png" width="400"/>
   <img align="right" src="images/chatbot_2.png" width="400"/>
