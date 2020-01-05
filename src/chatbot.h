@@ -11,14 +11,14 @@ class ChatLogic;
 /**
  * ChatBot class
  *
- * Includes unique pointer and implements the rule of five
+ * Includes unique pointer and implements the rule of five and move semantics
  * Look for numbering 1...5 in the code bellow for rule of 5 implementation
  * Reference: https://en.cppreference.com/w/cpp/language/rule_of_three
  */
 class ChatBot {
 private:
   // data handles (owned)
-  wxBitmap *_image; // avatar image
+  wxBitmap *_image; // avatar image that is allocated on the heap
 
   // data handles (not owned)
   GraphNode *_currentNode;
@@ -30,7 +30,7 @@ private:
 
 public:
   // constructors / destructors
-  ChatBot();                     // constructor WITHOUT memory allocation
+  ChatBot(); // constructor WITHOUT memory allocation
   ChatBot(std::string filename); // constructor WITH memory allocation
 
   //------------------------

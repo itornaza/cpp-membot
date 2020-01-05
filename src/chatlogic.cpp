@@ -30,7 +30,6 @@ void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens,
         token, tokens.end(),
         [&tokenID](const std::pair<std::string, std::string> &pair) {
           return pair.first == tokenID;
-          ;
         });
     if (token != tokens.end()) {
       element.AddToken(token->second); // add new keyword to edge
@@ -149,8 +148,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
               AddAllTokensToElement("KEYWORD", tokens, *edge);
 
               // store reference in child node and parent node
-              (*childNode)->AddEdgeToParentNode(edge.get());      // not owned
-              (*parentNode)->AddEdgeToChildNode(std::move(edge)); // owned
+              (*childNode)->AddEdgeToParentNode(edge.get());
+              (*parentNode)->AddEdgeToChildNode(std::move(edge));
             }
           }
         } else {
